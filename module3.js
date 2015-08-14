@@ -102,8 +102,20 @@ class RGBA {
 
 $(document).ready(function() {
     var img = new Image();
-    img.src = "img/cat.jpg";
+    img.src = "img/omocat.png";
 
 
 
 });
+function makeFunky(img) {
+    var pixels = ImageUtils.getPixels(img);
+    var length = pixels.data.length;
+    var data = pixels.data;
+
+    for (var i = 0; i < length/2; i += 2) {
+        var temp = data[i];
+        data[i] = data[length - i];
+        data[length - i] = temp;
+    }
+    ImageUtils.putPixels(pixels, img.width, img.height);
+}
